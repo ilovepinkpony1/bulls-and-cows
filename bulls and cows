@@ -1,0 +1,55 @@
+'use strict';
+
+let bullsAndCows = () => {
+    let randomNumber = (Math.random() * (10000 - 1000) + 1000).toFixed(0);
+    let userNamber = prompt('Enter the number:');
+    let countBulls = 0;
+    let countCows = 0;
+    let bullsAndCowsForUser = '';
+    let counterPasses = 1;
+    if (userNamber.length !== randomNumber.length
+  || !isFinite(userNamber)) {
+
+        while (userNamber.length !== randomNumber.length
+        || !isFinite(userNamber)) {
+            alert(`your number has ${userNamber.length} numbers, you need 4 to pass`);
+            userNamber = prompt('Enter the number:');
+        }
+    }
+
+    if (userNamber === randomNumber) {
+        return alert(`You win! The number was ${randomNumber}`);
+    } else {
+        while (true) {
+            if (userNamber.length !== randomNumber.length
+            || !isFinite(userNamber)) {
+                while (userNamber.length !== randomNumber.length
+                  || !isFinite(userNamber)) {
+                    alert(`your number has ${userNamber.length} numbers, you need 4 to pass`);
+                    userNamber = prompt('Enter the number:');
+                }
+            }
+
+            if (userNamber === randomNumber) {
+                return alert('you win');
+            }
+
+            for (let i = 0; i < randomNumber.length; i++) {
+                if (userNamber[i] === randomNumber[i]) {
+                    countBulls++;
+                } else if (randomNumber.includes(userNamber[i])) {
+                    countCows++;
+                }
+            }
+            bullsAndCowsForUser += countBulls + 'bulls'
+         + ' and ' + countCows +
+          'cows ' + counterPasses++ + ' ';
+            alert(bullsAndCowsForUser);
+            userNamber = prompt('Enter another one:');
+            countBulls = 0;
+            countCows = 0;
+        }
+    }
+};
+
+bullsAndCows();
